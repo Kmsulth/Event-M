@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\RegistrasiAcara;
+;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\RegistrasiAcaraModel;
@@ -15,11 +14,8 @@ class RegistrasiAcaraController extends Controller
         return view('registrasi');
     }
 
-    public function dataregis(){
-        $paket['judul'] = "Lihat Data";
-        $paket['data_regis'] = RegistrasiAcaraModel::All();
-        return view("registrasi",$paket);                              
-    }
+   
+    
 
     public function insert(Request $request)
     {       
@@ -38,6 +34,6 @@ class RegistrasiAcaraController extends Controller
             $data->aturan_acara = $request->aturan_acara;
             $data->banner = $bannerPath;
             $data->save();
-        return redirect()->route('dataregis')->with('success', 'Acara berhasil didaftarkan!');
+        return redirect()->route('registrasi')->with('success', 'Acara berhasil didaftarkan!');
     }
 }

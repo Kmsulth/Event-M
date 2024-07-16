@@ -13,7 +13,7 @@ class AdminController extends Controller
             if ($user->role === 'admin') {
                 return view('admin');
             } elseif ($user->role === 'pengguna') {
-                return view('pengguna');
+                return view('pengguna.pengguna');
             } elseif ($user->role === 'penyelenggara') {
                 return view('penyelenggara');
             } else {

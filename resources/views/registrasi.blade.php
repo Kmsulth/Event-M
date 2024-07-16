@@ -66,37 +66,40 @@
             <td>Berat Badan</td>
             <td>Tekanan Darah</td>
             <td>Kadar Hb</td>
-    
-        </tr>
-
-        @foreach($data_regis AS $urai)
-        <tr>
-            <td>{{ $loop->iteration }}</td>
-            <td>{{ $urai->id_penyelenggara }}</td>
-            <td>{{ $urai->nama_acara }}</td>
-            <td>{{ $urai->deskripsi_acara }}</td>
-            <td>{{ $urai->tanggal_acara }}</td>
-            <td>{{ $urai->jam_mulai }}</td>
-            <td>{{ $urai->jam_selesai }}</td>
-            <td>{{ $urai->lokasi }}</td>
-            <td>{{ $urai->harga }}</td>
-            <td>{{ $urai->stok_tiket }}</td>
-            <td>{{ $urai->aturan_acara }}</td>
-            
-            <td>
-                <img src="{{ asset('storage/'. $urai->banner) }}" alt="Banner" style="max-width: 250px;">
-
-                {{-- <a href="{{ route('editData', $urai->id) }}" ><button class="btn btn-primary btn-sm">Edit</button></a>
-                <form action="{{ route('hapusData', $urai->id) }}" method="POST" style="display:inline;">
-                  @csrf
-                  @method('Delete')
-                  <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini')"
-                  class="btn btn-danger btn-sm">Hapus</button>  
-     --}}
-                </form>
-            </td>
-        </tr>
+            @php
+            use App\Models\RegistrasiAcaraModel;
+            $data_acara = RegistrasiAcaraModel::all();
+            @endphp
+        
+         @foreach ($data_acara as $urai)
+            <tr>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $urai->id_penyelenggara }}</td>
+                <td>{{ $urai->nama_acara }}</td>
+                <td>{{ $urai->deskripsi_acara }}</td>
+                <td>{{ $urai->tanggal_acara }}</td>
+                <td>{{ $urai->jam_mulai }}</td>
+                <td>{{ $urai->jam_selesai }}</td>
+                <td>{{ $urai->lokasi }}</td>
+                <td>{{ $urai->harga }}</td>
+                <td>{{ $urai->stok_tiket }}</td>
+                <td>{{ $urai->aturan_acara }}</td>
+                <td>
+                    <img src="{{ asset('storage/' . $urai->banner) }}" alt="Banner" style="max-width: 250px;">
+                </td>
+                {{-- <td>
+                    <a href="{{ route('editData', $urai->id) }}" ><button class="btn btn-primary btn-sm">Edit</button></a>
+                    <form action="{{ route('hapusData', $urai->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('Delete')
+                        <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini')"
+                        class="btn btn-danger btn-sm">Hapus</button>  
+                    </form>
+                </td> --}}
+            </tr>
         @endforeach
+        
+        </tr>
     </table>
 </body>
 </html>
